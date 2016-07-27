@@ -1,0 +1,2 @@
+class PartSevenTwo < Question
+end

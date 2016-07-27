@@ -10,11 +10,72 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727145416) do
+ActiveRecord::Schema.define(version: 20160727163305) do
+
+  create_table "answer_sheets", force: :cascade do |t|
+    t.integer  "examination_id"
+    t.integer  "examiee_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "option_id"
+    t.integer  "answer_sheet_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "examination_questions", force: :cascade do |t|
+    t.integer  "examination_id"
+    t.integer  "question_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "examinations", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.integer  "sub_question_id"
+    t.integer  "question_id"
+    t.text     "content"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.integer  "level"
+    t.string   "type"
+    t.string   "photo"
+    t.string   "audio"
+    t.text     "content"
+    t.integer  "correct_option"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "sub_questions", force: :cascade do |t|
+    t.integer  "question_id"
+    t.text     "content"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "avatar"
+    t.string   "full_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

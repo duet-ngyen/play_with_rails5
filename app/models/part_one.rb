@@ -1,0 +1,2 @@
+class PartOne < Question
+end

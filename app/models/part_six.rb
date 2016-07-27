@@ -1,0 +1,2 @@
+class PartSix < Question
+end

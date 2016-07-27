@@ -1,0 +1,2 @@
+class PartThree < Question
+end
