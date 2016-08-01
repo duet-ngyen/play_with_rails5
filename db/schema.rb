@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20160728124840) do
 
   create_table "options", force: :cascade do |t|
     t.integer  "sub_question_id"
-    t.integer  "question_id"
     t.text     "content"
+    t.boolean  "correct"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -67,10 +67,12 @@ ActiveRecord::Schema.define(version: 20160728124840) do
   end
 
   create_table "sub_questions", force: :cascade do |t|
-    t.integer  "question_id"
+    t.string   "resource_type"
+    t.integer  "resource_id"
     t.text     "content"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["resource_type", "resource_id"], name: "index_sub_questions_on_resource_type_and_resource_id"
   end
 
   create_table "users", force: :cascade do |t|

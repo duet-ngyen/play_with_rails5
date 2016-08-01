@@ -1,0 +1,9 @@
+<ul>
+  <% @part_threes.each do |part_three| %>
+    <%= audio_tag part_three.audio, controls: true %> |
+    <%= link_to "show", admin_part_three_path(part_three) %> |
+    <%= link_to "edit", edit_admin_part_three_path(part_three) %> |
+    <%= link_to "delete", admin_part_three_path(part_three), method: :delete,
+          data: { confirm: 'Are you sure?' } %> <br>
+  <% end %>
+</ul>
