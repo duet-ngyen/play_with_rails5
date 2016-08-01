@@ -29,6 +29,36 @@ module StandardActions
     end
   end
 
+  def new_with_sub_questions
+    klass, object_name, objects_name = preparation
+    instance_variable_set(:"@#{object_name}", klass.new)
+    SysConst::NUMBER_OF_SUB_QUESTIONS[object_name.to_sym].times do
+      sub_question = instance_variable_get(:"@#{object_name}").sub_questions.build
+      4.times { sub_question.options.build }
+    end
+  end
+
+  def create_with_sub_questions
+    klass, object_name, objects_name = preparation
+    instance_variable_set(:"@#{object_name}", obj = current_user.send("#{objects_name}").build(params[object_name.to_sym]))
+    question = instance_variable_get(:"@#{object_name}")
+    if question.save
+      redirect_to [ :admin, instance_variable_get(:"@#{object_name}") ]
+    else
+      render :new
+    end
+  end
+
+  def update_with_sub_questions
+    klass, object_name, objects_name = preparation
+    instance_variable_set(:"@#{object_name}", obj = klass.find(params[:id]))
+    if instance_variable_get(:"@#{object_name}").update_attributes(params[object_name.to_sym])
+      redirect_to [ :admin, instance_variable_get(:"@#{object_name}") ]
+    else
+      render :edit
+    end
+  end
+
   def standard_edit
     klass, object_name, objects_name = preparation
     instance_variable_set(:"@#{object_name}", klass.find(params[:id]))

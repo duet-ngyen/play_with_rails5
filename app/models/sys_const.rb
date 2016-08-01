@@ -20,4 +20,11 @@ class SysConst
     from_600_to_750: "600-750",
     greater_than_750: "750-990",
   }
+
+  NUMBER_OF_SUB_QUESTIONS = {
+    part_three: 3,
+    part_four: 3,
+    part_seven_one: 5,
+    part_seven_two: 5
+  }
 end
