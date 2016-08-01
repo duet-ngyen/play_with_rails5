@@ -3,18 +3,13 @@ class Question < ApplicationRecord
   has_many :sub_questions
   has_many :options
 
-  def option_s
-    case correct_option
-    when 1
-      "A"
-    when 2
-      "B"
-    when 3
-      "C"
-    when 4
-      "D"
-    else
-      ""
-    end
+  scope :index, -> { all }
+
+  def correct_option_s
+    SysConst::PART_1_2_OPTIONS.key(correct_option)
+  end
+
+  def level_s
+    SysConst::QUESTION_LEVELS_TO_S[SysConst::QUESTION_LEVELS.key(level)]
   end
 end

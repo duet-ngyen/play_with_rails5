@@ -1,0 +1,22 @@
+<%= form_for([:admin, @part_two]) do |f| %>
+  <%= render "shared/error_messages", object: @part_two %>
+
+  <div class="field">
+    <%= f.label :audio, :class => 'control-label' %>
+    <%= f.file_field :audio %>
+  </div>
+
+  <b>Correct Option: </b> <br>
+  <% SysConst::PART_1_2_OPTIONS.each do |option, value| %>
+    <b><%= option %>: </b><%= f.radio_button :correct_option, value, required: true %> </br>
+  <% end %>
+  <b>Level: </b>
+
+  <div class="field">
+    <%= f.select(:level, SysConst::QUESTION_LEVELS.collect {|level, value| [SysConst::QUESTION_LEVELS_TO_S[level], value]}, :prompt => 'Select') %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

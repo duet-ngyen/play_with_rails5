@@ -1,4 +1,4 @@
-class Admin::PartOnesController < ApplicationController
+class Admin::PartTwosController < ApplicationController
   include StandardActions
 
   def index
@@ -31,6 +31,6 @@ class Admin::PartOnesController < ApplicationController
 
   private
   def permit_params
-    params.fetch(:part_one, {}).permit(:audio, :photo, :correct_option, :level)
+    params.fetch(:part_two, {}).permit(:audio, :photo, :correct_option, :level)
   end
 end
