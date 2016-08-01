@@ -3,8 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :questions, foreign_key: "creator_id"
-  has_many :part_ones, foreign_key: "creator_id"
+  [:questions, :part_ones, :part_twos, :part_threes, :part_fours, :part_fives, :part_sixs, :part_seven_ones, :part_seven_twos, :examinations].each do |object|
+    has_many object, foreign_key: "creator_id"
+  end
+
   has_many :answer_sheets, foreign_key: "examinee_id"
-  has_many :examinations, foreign_key: "creator_id"
+
+  scope :index, -> { all }
 end
