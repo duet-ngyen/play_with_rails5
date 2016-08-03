@@ -1,3 +1,4 @@
+<% arr = ["A", "B", "C", "D"] %>
 <%= form_for [:admin, object] do |f| %>
   <%= render "shared/error_messages", object: object %>
   <div class="field">
@@ -5,16 +6,20 @@
     <%= f.file_field :audio %>
   </div>
   <%= f.fields_for :sub_questions do |sub_question_builder| %>
-    <p>
-      <%= sub_question_builder.label :content, "Question #{sub_question_builder.index + 1}" %><br />
-      <%= sub_question_builder.text_area :content, :rows => 3 %><br />
-    </p>
-    <%= sub_question_builder.fields_for :options do |option_builder| %>
-      <p>
-        <%= option_builder.label :content, "Option #{option_builder.index+1}" %>
-        <%= option_builder.text_field :content %>
-      </p>
-    <% end %>
+    <div class="sub_questions">
+      <div class="question">
+        <%= sub_question_builder.label :content, "Question #{sub_question_builder.index + 1}" %><br />
+        <%= sub_question_builder.text_area :content, :rows => 3, class: "form-control" %><br />
+      </div>
+      <%= sub_question_builder.fields_for :options do |option_builder| %>
+        <div class="options">
+          <%= option_builder.label :content, "#{arr[option_builder.index]}" %>
+          <%= option_builder.text_field :content, class: "form-control option" %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-  <p><%= f.submit "Submit" %></p>
+  <div class="action">
+    <%= f.submit "Submit", class: "btn btn-lg btn-primary" %>
+  </div>
 <% end %>

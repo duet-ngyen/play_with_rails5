@@ -1,0 +1,22 @@
+.options {
+  margin-left: 20px;
+  margin-bottom: 5px;
+
+  label {
+    position: absolute;
+    margin-top: 7px;
+  }
+
+  .option {
+    margin-left: 20px;
+    width: 90%;
+  }
+}
+
+.sub_questions {
+  border: solid 1px #bfbfbf;
+  border-radius: 10px;
+  border-bottom: 3px solid #bfbfbf;
+  padding: 20px;
+  margin-bottom: 15px;
+}
