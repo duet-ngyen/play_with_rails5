@@ -17,4 +17,5 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require summernote
+//= require app
 //= require_tree .

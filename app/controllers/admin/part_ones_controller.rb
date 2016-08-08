@@ -1,5 +1,7 @@
 class Admin::PartOnesController < ApplicationController
   include StandardActions
+  layout "admin/admin_lte_2"
+  # layout 'admin_lte_2'
 
   def index
     standard_index
